@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.replicateimagepractice.ui.theme.ReplicateImagePracticeTheme
@@ -85,7 +86,7 @@ fun ActionButtons() {
             onClick = { /*TODO*/ },
             icon = { Icon(Icons.Filled.Send, contentDescription = "Navigate") },
             text = { Text(text = "Navigate") },
-            containerColor = Color(0xFF03DAC5)
+            containerColor = Color(0xFF03DAC5) // Teal color
         )
     }
 }
@@ -94,28 +95,29 @@ fun ActionButtons() {
 @Composable
 fun BottomBar() {
     BottomAppBar(
-        containerColor = Color(0xFF6200EE),
+        containerColor = Color(0xFF6200EE), // Purple color
         actions = {
-            IconButton(onClick = { /**/ }) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.Default.Home, contentDescription = "Home", tint = Color.White)
-                    Text(text = "Home", color = Color.White)
-                }
-            }
-            IconButton(onClick = { /**/ }) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.Default.AddCircle, contentDescription = "Create", tint = Color.White)
-                    Text(text = "Create", color = Color.White)
-                }
-            }
-            IconButton(onClick = { /**/ }) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(Icons.Default.Settings, contentDescription = "Settings", tint = Color.White)
-                    Text(text = "Settings", color = Color.White)
-                }
-            }
+            BottomBarButton(icon = Icons.Default.Home, text = "Home")
+            BottomBarButton(icon = Icons.Default.AddCircle, text = "Create")
+            BottomBarButton(icon = Icons.Default.Settings, text = "Settings")
         }
     )
+}
+
+@Composable
+fun BottomBarButton(icon: ImageVector, text: String) {
+    FloatingActionButton(
+        onClick = { /*TODO*/ },
+        containerColor = Color.White,
+        contentColor = Color.Black,
+        modifier = Modifier.padding(4.dp),
+        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Icon(icon, contentDescription = text)
+            Text(text)
+        }
+    }
 }
 
 @Composable
@@ -127,7 +129,7 @@ fun Content(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.Start
     ) {
-        for (i in 0..10) {
+        for (i in 0..9) {
             ListItem(headlineContent = {
                 Text(text = "List item - $i")
             })
